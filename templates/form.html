@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form action="/submitted" method="post">
+    <fieldset>
+        <legend>Signup</legend>
+        <label for="user">Username</label><br />
+        <input type="text" name="username" placeholder="Enter Username" required="required" id="user">
+        <br>    
+        <label for="pass">Password</label><br />
+        <input type="password" name="password" placeholder="Enter Password" required="required" id="pass">
+        <br>
+        <label for="passv">Verify Password</label><br />
+        <input type="password" name="passwordv" placeholder="Verify Password" required="required" id="passv"> 
+        <br>
+        <label for="email">Email(Optional)</label><br />    
+        <input type="text" name="email" placeholder="Enter Email" id="email">
+        <br>    
+        <button>Submit</button>
+    </fieldset>
+</form>
+
+{% endblock %}   
