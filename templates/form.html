@@ -1,32 +1,43 @@
 {% extends 'index.html' %}
 
 {% block content %}
-
-<form action="/submitted" method="post">
+<h1>LaunchCode Demo Signup Form</h1>
+<form action="/" method="post">
     <fieldset>
         <legend>Signup</legend>
         <label for="user">Username</label>
-        <br /> 
-        <input type="text" name="username" value="{{name}}" required="required" id="user">
-        {% if errors['error_name'] %}
-            <span>{{ errors['error_name'] }}</span>
-        {% endif %}
-        <br>    
+        <br />
+        <div class="input1">
+                <input type="text" name="username" value="{{name}}" required="required" id="user">
+                {% if errors['error_name'] %}
+                    <span>{{ errors['error_name'] }}</span>
+                {% endif %}
+        </div> 
+        <!-- <br>     -->
         <label for="pass">Password</label><br />
-        <input type="password" name="password" required="required" id="pass">
-        {% if errors['error_password'] %}
-            <span>{{ errors['error_password'] }}</span>
-        {% endif %}
-        <br>
+        <div class="input1">
+                <input type="password" name="password" required="required" id="pass">
+                {% if errors['error_password'] %}
+                    <span>{{ errors['error_password'] }}</span>
+                {% endif %}
+        </div>
+        <!-- <br> -->
         <label for="passv">Verify Password</label><br />
-        <input type="password" name="passwordv" required="required" id="passv">
-        {% if errors['error_match'] %}
-            <span>{{ errors['error_match'] }}</span>
-        {% endif %} 
-        <br>
-        <label for="email">Email(Optional)</label><br />    
-        <input type="text" name="email" id="email">
-        <br>    
+        <div class="input1">
+                <input type="password" name="passwordv" required="required" id="passv">
+                {% if errors['error_match'] %}
+                    <span>{{ errors['error_match'] }}</span>
+                {% endif %} 
+        </div>
+        <!-- <br> -->
+        <label for="email">Email(Optional)</label><br />
+        <div class="input1">
+            <input type="text" name="email" id="email" value="{{email}}">
+            {% if errors['error_email'] %}
+                <span>{{ errors['error_email'] }}</span>
+            {% endif %}
+        </div>    
+        <!-- <br>     -->
         <button>Submit</button>
     </fieldset>
 </form>

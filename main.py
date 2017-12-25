@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, url_for
 import cgi
 import re
 
@@ -18,7 +18,7 @@ class Validator:
     return (input1 == input2)
 
   def validate_email(self,input):
-      regex = r"\w+@\w+.\w+"
+      regex = r"\w+@\w+\.\w+"
       if re.match(regex,input):
           return (True)
       else:
@@ -31,8 +31,14 @@ error = ""
 def index():
     return render_template("form.html", errors=error)
 
-@app.route("/submitted", methods=['POST'])
+
+@app.route("/submitted")
 def submitted():
+    return render_template("submitted.html")
+
+
+@app.route("/", methods=['POST'])
+def validate():
     name = request.form['username']
     password = request.form['password']
     password_verified = request.form['passwordv']
@@ -59,14 +65,14 @@ def submitted():
         errors['error_match'] = "Passwords do not match"   
         errors['contains_error'] = True
 
-    if not Validator.validate_email('self',email):
+    if email and not Validator.validate_email('self',email):
         errors['error_email'] = "Invalid Email"          
         errors['contains_error'] = True
 
     if errors['contains_error']:
-        return render_template("form.html", name=name, errors=errors)
+        return render_template("form.html", name=name, email=email, errors=errors)
 
-    return render_template("submitted.html", name=name)
+    return redirect("/submitted?name=" + name)
 
 app.run()    
 
