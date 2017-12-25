@@ -39,10 +39,10 @@ def submitted():
 
 @app.route("/", methods=['POST'])
 def validate():
-    name = request.form['username']
-    password = request.form['password']
-    password_verified = request.form['passwordv']
-    email = request.form['email']
+    name = cgi.escape(request.form['username'])
+    password = cgi.escape(request.form['password'])
+    password_verified = cgi.escape(request.form['passwordv'])
+    email = cgi.escape(request.form['email'])
 
 
     errors = {
