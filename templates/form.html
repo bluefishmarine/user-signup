@@ -5,17 +5,27 @@
 <form action="/submitted" method="post">
     <fieldset>
         <legend>Signup</legend>
-        <label for="user">Username</label><br />
-        <input type="text" name="username" placeholder="Enter Username" required="required" id="user">
+        <label for="user">Username</label>
+        <br /> 
+        <input type="text" name="username" value="{{name}}" required="required" id="user">
+        {% if errors['error_name'] %}
+            <span>{{ errors['error_name'] }}</span>
+        {% endif %}
         <br>    
         <label for="pass">Password</label><br />
-        <input type="password" name="password" placeholder="Enter Password" required="required" id="pass">
+        <input type="password" name="password" required="required" id="pass">
+        {% if errors['error_password'] %}
+            <span>{{ errors['error_password'] }}</span>
+        {% endif %}
         <br>
         <label for="passv">Verify Password</label><br />
-        <input type="password" name="passwordv" placeholder="Verify Password" required="required" id="passv"> 
+        <input type="password" name="passwordv" required="required" id="passv">
+        {% if errors['error_match'] %}
+            <span>{{ errors['error_match'] }}</span>
+        {% endif %} 
         <br>
         <label for="email">Email(Optional)</label><br />    
-        <input type="text" name="email" placeholder="Enter Email" id="email">
+        <input type="text" name="email" id="email">
         <br>    
         <button>Submit</button>
     </fieldset>
